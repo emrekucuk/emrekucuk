@@ -1,0 +1,32 @@
+name: Deploy React Docker App
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: |
+          echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build & Push Image
+        run: |
+          docker build -t ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest .
+          docker push ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker pull ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest
+            docker stop emrekucuk-portfolio || true
+            docker rm emrekucuk-portfolio || true
+            docker run -d --name emrekucuk-portfolio -p 8080:80 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest
