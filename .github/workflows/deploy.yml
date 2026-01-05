@@ -16,8 +16,8 @@ jobs:
 
       - name: Build & Push Image
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest .
-          docker push ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest
+          docker build -t ghcr.io/${{ github.repository_owner }}/emrekucuk:latest .
+          docker push ghcr.io/${{ github.repository_owner }}/emrekucuk:latest
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@v1
@@ -26,7 +26,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest
-            docker stop emrekucuk-portfolio || true
-            docker rm emrekucuk-portfolio || true
-            docker run -d --name emrekucuk-portfolio -p 8080:80 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/emrekucuk-portfolio:latest
+            docker pull ghcr.io/${{ github.repository_owner }}/emrekucuk:latest
+            docker stop emrekucuk || true
+            docker rm emrekucuk || true
+            docker run -d --name emrekucuk -p 8080:80 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/emrekucuk:latest
