@@ -43,6 +43,12 @@ nav a {
   border-radius: 8px;
   margin-bottom: 1rem;
 }
+.home-card {
+  background: #020617;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
 
 .tech-list {
   list-style: none;

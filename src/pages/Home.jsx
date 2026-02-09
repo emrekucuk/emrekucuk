@@ -1,8 +1,8 @@
 export default function Home() {
   return (
     <>
-      <section>
-        <h2>Hakkımda</h2>
+      <h2>Hakkımda</h2>
+      <section className="home-card">
         <p>
           2020 yılından bu yana yazılım geliştirici olarak çalışıyor, projelerin analiz, genel mimari tasarım, 
           veritabanı tasarımı ve sıfırdan repository oluşturma süreçlerinde aktif rol alıyorum. 
