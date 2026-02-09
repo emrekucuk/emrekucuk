@@ -9,6 +9,7 @@ export default function Header() {
         <Link to="/">Anasayfa</Link>
         <Link to="/project">Projeler</Link>
         <Link to="/jobs">İşler</Link>
+        <Link to="/skills">Beceriler</Link>
         <Link to="/education">Eğitim</Link>
       </nav>
     </header>

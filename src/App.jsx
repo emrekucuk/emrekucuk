@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Jobs from "./pages/Jobs";
+import Skills from "./pages/Skills";
 import Educations from "./pages/Educations";
 
 export default function App() {
@@ -12,8 +13,9 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/project" element={<Projects />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/project" element={<Projects />} />
+        <Route path="/skills" element={<Skills />} />
         <Route path="/education" element={<Educations />} />
       </Routes>
       <Footer />
