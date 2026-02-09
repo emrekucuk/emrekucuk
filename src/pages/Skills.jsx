@@ -22,6 +22,7 @@ export default function Skills() {
     {title: "Graylog"  },
     {title: "WebSocket"  },
     {title: "Hangfire"  },
+    {title: "IIS"  },
   ];
 
 
